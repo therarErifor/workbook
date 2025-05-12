@@ -1,86 +1,83 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(home: HomeScreen()));
 }
 
-class MyApp extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Демонстрация компоновочных виджетов',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Компоновочные виджеты')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              // Демонстрация Container и Row
-              Container(
-                height: 100,
-                color: Colors.lightBlue.shade100,
-                child: Row(
-                  children: [
-                    Icon(Icons.star, size: 40, color: Colors.amber),
-                    const Spacer(), // добавляет свободное пространство между элементами
-                    Icon(Icons.favorite, size: 40, color: Colors.red),
-                  ],
-                ),
-              ),
-              
-              const Divider(height: 20, thickness: 1),
-
-              // Демонстрация Column и Expanded
-              Column(
+    return Scaffold(
+      appBar: AppBar(title: Text('Компоновочные виджеты')),
+      body: SafeArea(
+        child: Column(
+          children: [
+            // ROW
+            Container(
+              height: 100,
+              color: Colors.lightGreen,
+              child: Row(
                 children: [
-                  Container(color: Colors.green, height: 50, width: double.maxFinite),
-                  Expanded(
-                    flex: 2,
-                    child: Container(color: Colors.purple, height: 50, width: double.maxFinite),
-                  ),
+                  Icon(Icons.home, size: 40, color: Colors.black),
+                  const Spacer(),
+                  Icon(Icons.settings, size: 40, color: Colors.black),
+                ],
+              ),
+            ),
+
+            // COLUMN с Expanded
+            Container(
+              height: 200,
+              color: Colors.lightBlue,
+              child: Column(
+                children: [
                   Expanded(
                     flex: 1,
-                    child: Container(color: Colors.orange, height: 50, width: double.maxFinite),
+                    child: Container(color: Colors.indigo, height: 50),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(color: Colors.lime, height: 50),
                   ),
                 ],
               ),
+            ),
 
-              const Divider(height: 20, thickness: 1),
-
-              // Демонстрация Stack и Positioned
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(width: 150, height: 150, color: Colors.yellow),
-                  Positioned(
-                    top: 20,
-                    left: 20,
-                    child: Container(width: 100, height: 100, color: Colors.deepPurple),
+            // STACK
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Container(
+                  width: 150,
+                  height: 150,
+                  color: Colors.yellow,
+                ),
+                Positioned(
+                  top: 20,
+                  left: 20,
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.deepOrange,
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
 
-              const Divider(height: 20, thickness: 1),
-
-              // Демонстрация Flexible
-              Row(
-                children: [
-                  Flexible(flex: 1, fit: FlexFit.loose, child: Container(color: Colors.cyan, height: 50)),
-                  Flexible(flex: 2, fit: FlexFit.tight, child: Container(color: Colors.teal, height: 50)),
-                ],
-              )
-            ],
-          ),
+            // FLEXIBLE в Row
+            Row(
+              children: [
+                Flexible(
+                  flex: 1,
+                  child: Container(color: Colors.cyan, height: 50),
+                ),
+                Flexible(
+                  flex: 2,
+                  child: Container(color: Colors.brown, height: 50),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
